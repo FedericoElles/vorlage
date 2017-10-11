@@ -81,7 +81,16 @@ app.get("/about", function (req, res) {
    }).catch(function(err){catchError(res, err);});
 });
 
-
+/**
+ * Just another route
+ */
+app.get("/posts", function (req, res) {
+   apimock.posts().then(function(data){     
+     
+     res.render('posts', getContext(req, data));
+     
+   }).catch(function(err){catchError(res, err);});
+});
 
 
 // listen for requests :)

@@ -15,7 +15,8 @@
     "node-sass": "^4.5.2",
     "q": "^2.0.3",
     "request": "^2.81.0",
-    "contentful": "^4.6.2"
+    "contentful": "^4.6.2",
+    "marked": "^0.3.6"
   },
   "engines": {
     "node": "6.10.x"
