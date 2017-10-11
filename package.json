@@ -14,7 +14,8 @@
     "express-handlebars": "^3.0.0",
     "node-sass": "^4.5.2",
     "q": "^2.0.3",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "contentful": "^4.6.2"
   },
   "engines": {
     "node": "6.10.x"
