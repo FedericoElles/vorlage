@@ -1,0 +1,15 @@
+
+
+
+{{#each data.elements}}
+  <!-- Base Element {{title}} -->
+  {{> (lookup . 'type')}}
+{{/each}}
+
+
+        {{#each context.elements as |element index|}}
+          <section>
+            <h2>{{element.title}}</h2>
+            <div class="u-richtext">{{{element.textHTML}}}</div>
+          </section>
+        {{/each}}
