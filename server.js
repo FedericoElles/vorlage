@@ -92,6 +92,29 @@ app.get("/posts", function (req, res) {
    }).catch(function(err){catchError(res, err);});
 });
 
+/**
+ * Just another route
+ */
+app.get("/articles", function (req, res) {
+   apimock.articles().then(function(data){     
+     
+     res.render('articles', getContext(req, data));
+     
+   }).catch(function(err){catchError(res, err);});
+});
+
+/**
+ * Just another route
+ */
+app.get("/article/:id", function (req, res) {
+   apimock.article(req.params.id).then(function(data){     
+     
+     res.render('article', getContext(req, data));
+     
+   }).catch(function(err){catchError(res, err);});
+});
+
+
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
