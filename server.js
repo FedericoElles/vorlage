@@ -27,7 +27,12 @@ function getContext(req, data){
   var context = {
     debug: !!req.query.debug, // Are we in debug mode? ?debug=true
     dev: !!req.query.dev,     //Are we in dev mode? ?dev=true
-    data: data //data is always the external payload
+    data: data, //data is always the external payload
+      style: sass.renderSync({
+      file: './scss/style.scss',
+      includePaths: ['./scss/mixins/'],
+      outputStyle: 'compressed'
+    }).css
   }
   if (context.debug){ //shortcut to display context in template
     context.json = JSON.stringify(context, undefined, 4);
