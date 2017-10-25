@@ -1,0 +1,113 @@
+@import "inuit-font-size";
+
+
+
+
+/* Default font and colors */
+
+body {
+  color: $font-color;
+  @include inuit-font-size($inuit-global-font-size, $important: false)
+}
+
+.u-muted, .u-muted-1{
+  color: lighten($font-color, 20%);
+}
+
+.u-muted-2{
+  color: lighten($font-color, 40%);
+}
+
+.u-bold, .u-strong {
+  font-weight: 700;
+}
+
+/* Line Height Helpers*/
+
+.u-line-height-1\/2 {
+  line-height: 0.5 !important;
+}
+
+.u-line-height-1 {
+  line-height: 1 !important;
+}
+
+.u-line-height-1-1\/2 {
+  line-height: 1.5 !important;
+}
+
+.u-line-height-2 {
+  line-height: 2 !important;
+}
+
+/* Font Sizes*/
+
+
+$inuit-font-size-h1:  $inuit-global-font-size * 2 !default;
+$inuit-font-size-h2:  $inuit-global-font-size + $font-modificator * 6 !default;
+$inuit-font-size-h3:  $inuit-global-font-size + $font-modificator * 4 !default;
+$inuit-font-size-h4:  $inuit-global-font-size + $font-modificator * 2 !default;
+$inuit-font-size-h5:  $inuit-global-font-size + $font-modificator !default;
+$inuit-font-size-h6:  $inuit-global-font-size !default;
+
+.u-text-s {
+  @include inuit-font-size($inuit-global-font-size - $font-modificator, $important: false);
+}
+
+.u-text-xs {
+  @include inuit-font-size($inuit-global-font-size - $font-modificator * 2, $important: false);
+}
+
+.u-text-xxs {
+  @include inuit-font-size($inuit-global-font-size - $font-modificator * 3, $important: false);
+}
+
+.u-h1 {
+  @include inuit-font-size($inuit-font-size-h1, $important: false);
+}
+
+.u-h2 {
+  @include inuit-font-size($inuit-font-size-h2, $important: false);
+}
+
+.u-h3 {
+  @include inuit-font-size($inuit-font-size-h3, $important: false);
+}
+
+.u-h4 {
+  @include inuit-font-size($inuit-font-size-h4, $important: false);
+}
+
+.u-h5 {
+  @include inuit-font-size($inuit-font-size-h5, $important: false);
+}
+
+.u-h6 {
+  @include inuit-font-size($inuit-font-size-h6, $important: false);
+}
+
+
+/* Helpers*/
+
+
+.u-text-center {
+  text-align:center;
+}
+
+.u-text-right {
+	text-align: right;
+}
+
+.u-text-left {
+	text-align: left;
+}
+
+
+.u-inverted {
+  color: invert($font-color);;
+}
+
+
+.u-uppercase {
+	text-transform: uppercase;
+}

@@ -32,7 +32,7 @@ function getContext(req, data){
       file: './scss/style.scss',
       includePaths: ['./scss/mixins/'],
       outputStyle: 'compressed'
-    }).css
+    }).css.toString()
   }
   if (context.debug){ //shortcut to display context in template
     context.json = JSON.stringify(context, undefined, 4);

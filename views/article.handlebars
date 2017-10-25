@@ -1,4 +1,5 @@
-{{data.title}}  - {{data.id}}
+
+{{> title title=data.title }}
 
 
 {{#each data.elements}}
@@ -7,9 +8,4 @@
 {{/each}}
 
 
-        {{#each context.elements as |element index|}}
-          <section>
-            <h2>{{element.title}}</h2>
-            <div class="u-richtext">{{{element.textHTML}}}</div>
-          </section>
-        {{/each}}
+       

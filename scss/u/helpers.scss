@@ -1,0 +1,60 @@
+@import "clearfix";
+
+.u-float-left{
+	float: left;
+}
+
+.u-float-right{
+	float: right;
+}
+
+.u-hidden{
+	display: none;
+}
+
+
+
+.u-inline {
+	display: inline-block;
+}
+
+.u-block {
+	display: block;
+}
+
+.u-code {
+  font-family: monospace;
+  font-size : 110%;
+  background-color: rgba(100,100,100,0.1) ;
+  padding: 1px;
+}
+
+.u-overflow-hidden {
+	overflow: hidden;
+}
+
+
+
+.u-fit {
+  max-width: 100%;
+}
+
+.u-stretch {
+  width:100%;
+}
+
+
+
+.u-border {
+  border-width: 1px;
+  border-style: solid;
+}
+
+
+.u-clearfix {
+  @include clearfix();
+}
+
+.u-clear {
+  clear:both;
+}

@@ -1,3 +1,12 @@
 $breakpoint-lg: 940px;
 
+$inuit-global-font-size:    16px;
+$font-modificator: 2px;
+$inuit-global-line-height:  24px;
+$font-color: #333;
+
+@import "g/reset";
+
 @import "o/wrapper";
+
+@import "u/text";
