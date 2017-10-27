@@ -79,6 +79,7 @@ apimock.articles = function(){
         console.log(entry)
         data.push({
           title: entry.fields.title,
+          slug: entry.fields.slug,
           id: entry.sys.id
           //,
           //body: entry.fields.body,
@@ -98,12 +99,12 @@ apimock.articles = function(){
 
 
 
-apimock.article = function(id){
+apimock.article = function(slug){
   var deferred = Q.defer();
   
   client.getEntries({
     'content_type': 'article',
-    'sys.id': id,
+    'fields.slug': slug,
     'include': 3
   })
   .then(function (entries) {
@@ -111,6 +112,7 @@ apimock.article = function(id){
       var stage = client.parseEntries(entries.items.pop());
       var data = {};
       data.title = stage.fields.title;
+      data.slug = stage.fields.slug;
       data.elements = [];
                                       
       stage.fields.elements.forEach(function(element){
