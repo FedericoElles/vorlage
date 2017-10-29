@@ -145,6 +145,31 @@ apimock.index = function(id){
       var stage = client.parseEntries(entries.items.pop());
       var data = {};
       data.title = stage.fields.title;
+    
+      data.configs = {};
+      stage.fields.configs.forEach(function(config){
+        data.configs[config.fields.key] = config.fields.value || '';
+      });
+    
+      data.menu = [];
+      stage.fields.menu.forEach(function(item){
+        var stage = {};
+        var type = item.sys.contentType.sys.id;
+        if (type === 'article'){
+          stage.type = 'link';
+        }
+        //TODO: type === container
+        stage.title = item.fields.title;
+        stage.slug = item.fields.slug
+        data.menu.push(stage);
+      });
+    
+      data.elements = [];
+    
+      if (stage.fields.homepage){
+        data.elements = elementify(stage.fields.homepage.fields.elements);
+      }
+    
       //data.slug = stage.fields.slug;
     
       //data.page = elementify(stage.fields.elements);

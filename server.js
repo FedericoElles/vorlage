@@ -24,7 +24,7 @@ var WEBSITEID = '50wzmVBMe4o0yaQC8aiUW2';
 /**
  * CONTEXT
  */
-function getContext(req, data){
+function getContext(req, data, indexData){
   var context = {
     debug: !!req.query.debug, // Are we in debug mode? ?debug=true
     dev: !!req.query.dev,     //Are we in dev mode? ?dev=true
@@ -35,9 +35,15 @@ function getContext(req, data){
       outputStyle: 'compressed'
     }).css.toString()
   }
+  if (indexData){
+    delete indexData.stage;
+    context.index = indexData;
+  }
   if (context.debug){ //shortcut to display context in template
     context.json = JSON.stringify(context, undefined, 4);
   }
+
+
   return context;
 }
 
@@ -120,6 +126,19 @@ app.get("/article/:id", function (req, res) {
    }).catch(function(err){catchError(res, err);});
 });
 
+/**
+ * Display article with webseite info
+ */
+app.get("/article2/:id", function (req, res) {
+   var index;
+   apimock.index(WEBSITEID).then(function(data){ 
+     index = data;
+     return apimock.article(req.params.id);
+   }).then(function(data){     
+     res.render('article', getContext(req, data, index));
+     
+   }).catch(function(err){catchError(res, err);});
+});
 
 
 // listen for requests :)
