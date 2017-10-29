@@ -99,6 +99,68 @@ apimock.articles = function(){
 
 
 
+function elementify(items){
+  
+  var elements = [];
+
+  items.forEach(function(element){
+    var stageElement = {
+      type: element.sys.contentType.sys.id
+    };
+
+    switch (stageElement.type){
+      case 'blockText':
+        stageElement.textHTML = marked(element.fields.text);
+        break;
+      case 'blockImage':
+        stageElement.title = element.fields.title;
+        stageElement.description = element.fields.description;
+        stageElement.image = element.fields.image.fields;
+        break;
+      case 'blockHtml':
+        stageElement.html = element.fields.html;
+        break;
+      default:
+        stageElement.error = 'Unknown Block';
+    }
+
+    elements.push(stageElement);
+
+  });  
+  
+  return elements;
+  
+}
+
+apimock.index = function(id){
+  var deferred = Q.defer();
+  
+  client.getEntries({
+    'content_type': 'website',
+    'sys.id': id,
+    'include': 3
+  })
+  .then(function (entries) {
+      //console.log(JSON.stringify(entries))
+      var stage = client.parseEntries(entries.items.pop());
+      var data = {};
+      data.title = stage.fields.title;
+      //data.slug = stage.fields.slug;
+    
+      //data.page = elementify(stage.fields.elements);
+                                      
+      data.stage = stage;
+      deferred.resolve(data);
+  })
+  .catch(function(err){
+    console.log(err);
+    deferred.reject(new Error(err));
+  })
+ 
+  return deferred.promise;  
+}
+
+
 apimock.article = function(slug){
   var deferred = Q.defer();
   
@@ -113,49 +175,14 @@ apimock.article = function(slug){
       var data = {};
       data.title = stage.fields.title;
       data.slug = stage.fields.slug;
-      data.elements = [];
+      data.elements = elementify(stage.fields.elements);
                                       
-      stage.fields.elements.forEach(function(element){
-        var stageElement = {
-          type: element.sys.contentType.sys.id
-        };
-        
-        switch (stageElement.type){
-          case 'blockText':
-            stageElement.textHTML = marked(element.fields.text);
-            break;
-          case 'blockImage':
-            stageElement.title = element.fields.title;
-            stageElement.description = element.fields.description;
-            stageElement.image = element.fields.image.fields;
-            break;
-          case 'blockHtml':
-            stageElement.html = element.fields.html;
-            break;
-          default:
-            stageElement.error = 'Unknown Block';
-        }
-        
-        data.elements.push(stageElement);
-        
-      });                                
-                                      
-      //console.log(client.parseEntries(entry));
-        
-        //data = {
-          //title: entry.fields.title,
-          //id: entry.sys.id
-          //,
-          //body: entry.fields.body,
-          //html: marked(entry.fields.body)
-        //};
-    
+      
       deferred.resolve(data);
   })
   .catch(function(err){
     console.log(err);
     deferred.reject(new Error(err));
-    
   })
  
   return deferred.promise;  

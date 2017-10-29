@@ -18,6 +18,7 @@ var apimock = require('./apimock');
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
+var WEBSITEID = '50wzmVBMe4o0yaQC8aiUW2';
 
 
 /**
@@ -67,7 +68,7 @@ app.get('/style.css', (req, res) => {
  * Basic route
  */
 app.get("/", function (req, res) {
-   apimock.example().then(function(data){     
+   apimock.index(WEBSITEID).then(function(data){     
      
      res.render('home', getContext(req, data));  
      
