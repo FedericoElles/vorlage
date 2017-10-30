@@ -75,8 +75,7 @@ app.get('/style.css', (req, res) => {
  */
 app.get("/", function (req, res) {
    apimock.index(WEBSITEID).then(function(data){     
-     
-     res.render('home', getContext(req, data));  
+     res.render('home', getContext(req, data, data));  
      
    }).catch(function(err){catchError(res, err);});
 });
@@ -115,21 +114,11 @@ app.get("/articles", function (req, res) {
    }).catch(function(err){catchError(res, err);});
 });
 
-/**
- * Just another route
- */
-app.get("/article/:id", function (req, res) {
-   apimock.article(req.params.id).then(function(data){     
-     
-     res.render('article', getContext(req, data));
-     
-   }).catch(function(err){catchError(res, err);});
-});
 
 /**
  * Display article with webseite info
  */
-app.get("/article2/:id", function (req, res) {
+app.get("/article/:id", function (req, res) {
    var index;
    apimock.index(WEBSITEID).then(function(data){ 
      index = data;

@@ -1,5 +1,16 @@
-
+<amp-sidebar id="sidebar1" layout="nodisplay" side="left">
+  <ul>
+      <li><a href="/">Startseite</a></li>
+    {{#each index.menu}}
+      
+      <li><a href="/article/{{slug}}">{{title}}</a></li>      
+    {{/each}}
+    
+    
+    
+  </ul>
+</amp-sidebar>
 
 <div class="u-h1">{{index.title}}</div>
-
+<button class="hamburger" on='tap:sidebar1.toggle'>Menü</button>
 <hr>
