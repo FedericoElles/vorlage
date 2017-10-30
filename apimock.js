@@ -141,10 +141,7 @@ apimock.index = function(id){
     'include': 3
   })
   .then(function (entries) {
-      //console.log(typeof entries)
-      var entry = entries.items.pop();
-      console.log(JSON.stringify(entry, undefined, 2))
-      var stage = entry; //client.parseEntries(entry);
+      var stage = entries.items.pop(); 
       var data = {};
       data.title = stage.fields.title;
     
@@ -197,14 +194,11 @@ apimock.article = function(slug){
     'include': 3
   })
   .then(function (entries) {
-      //console.log(JSON.stringify(entries))
-      var stage = entries.items.pop() //client.parseEntries();
+      var stage = entries.items.pop() 
       var data = {};
       data.title = stage.fields.title;
       data.slug = stage.fields.slug;
       data.elements = elementify(stage.fields.elements);
-                                      
-      
       deferred.resolve(data);
   })
   .catch(function(err){
