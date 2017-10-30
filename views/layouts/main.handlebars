@@ -24,15 +24,20 @@
 </head>
 <body>
 
+
+{{> header}}
+
 <div class="o-wrapper">
 {{{body}}}
 </div>
 
+{{> footer}}
+
     
-    {{#if  debug}}
-      <hr>
-      <pre>{{{json}}}</pre>
-    {{/if}}
+{{#if  debug}}
+  <hr>
+  <pre>{{{json}}}</pre>
+{{/if}}
 
 </body>
 </html>
