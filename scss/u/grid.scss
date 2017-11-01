@@ -52,14 +52,18 @@ $prefix: \@;
 
 
 
-
+.u-show#{$prefix}mob {
+  display: none;
+}
 @media screen and (max-width: $breakpoint + $unit) {
   .u-show#{$prefix}mob {
     display: block;
   }
 }
 
-
+.u-show#{$prefix}desk {
+  display: none;
+}
 @media screen and (min-width: ($breakpoint) + $unit) {
   .u-show#{$prefix}desk {
     display: block;
