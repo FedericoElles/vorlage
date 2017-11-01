@@ -1,0 +1,63 @@
+
+
+// build utilty spacing classes, e.g. u-space-bottom-2
+// Not Responsive!
+@mixin spaces($space-columns) {
+
+    // Loop through the number of columns for each denominator of our fractions.
+    @each $space-col in $space-columns {
+
+            // Build a Class for single directions
+			@each $dir in ('right', 'left', 'top', 'bottom') {
+				.u-space-#{$dir}-#{$space-col} {
+					margin-#{$dir}: ($spacing-unit * $space-col);
+				}
+			}
+
+			// Build a Class for Vertical Directions
+			.u-space-vert-#{$space-col} {
+				margin-top: ($spacing-unit * $space-col);
+				margin-bottom: ($spacing-unit * $space-col);
+			}
+
+			// Build a class for Horizontal Directions
+			.u-space-horz-#{$space-col} {
+				margin-left: ($spacing-unit * $space-col);
+				margin-right: ($spacing-unit * $space-col);
+			}
+
+			// Build a class for all Directions
+			.u-space-all-#{$space-col}, .u-space-#{$space-col} {
+				margin: ($spacing-unit * $space-col);
+			}			
+
+    }
+
+}
+
+
+@include spaces(1 2 3 4);
+
+
+/* Padding */
+.u-pad-xs {
+	padding: $spacing-unit*(3/8);
+}			
+
+.u-pad-s {
+	padding: $spacing-unit*(5/8);
+}			
+
+
+.u-pad, .u-pad-m {
+	padding: $spacing-unit;
+}			
+
+.u-pad-l {
+	padding: $spacing-unit*1.5;
+}		
+
+.u-pad-xl {
+	padding: $spacing-unit*2;
+}
+

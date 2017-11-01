@@ -5,8 +5,18 @@ $font-modificator: 2px;
 $inuit-global-line-height:  24px;
 $font-color: #333;
 
+$spacing-unit: 10px;
+$base-spacing-unit: $spacing-unit;
+
+
 @import "g/reset";
 
 @import "o/wrapper";
+@import "o/ratio";
+@import "o/media";
+
+@import "c/header";
+@inport "c/footer";
 
 @import "u/text";
+@import "u/space";

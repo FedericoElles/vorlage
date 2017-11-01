@@ -1,0 +1,27 @@
+/* item styles */
+.o-ratio {
+  position: relative;
+  overflow: hidden;
+  padding-top: 50%; /* 2-1 Aspect Ratio */
+}
+
+.o-ratio--8-5 {
+  padding-top: 62,5%; /* 8-5 Aspect Ratio */
+}
+
+.o-ratio--16-9 {
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.o-ratio--21-9 {
+  padding-top: (9/21)*100%; /* 21:9 Aspect Ratio */
+}
+
+.o-ratio__item {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
