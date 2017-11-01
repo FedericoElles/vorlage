@@ -1,0 +1,77 @@
+@import "clearfix";
+
+/* Default/mandatory classes.
+   ========================================================================== */
+
+/**
+ * 1. Allows us to use the layout object on any type of element.
+ * 2. We need to defensively reset any box-model properties.
+ * 3. Use the negative margin trick for multi-row grids:
+ *    http://csswizardry.com/2011/08/building-better-grid-systems/
+ */
+
+.o-layout {
+  display: block; /* [1] */
+  margin:  0; /* [2] */
+  padding: 0; /* [2] */
+  list-style: none; /* [1] */
+  margin-left: -$spacing-unit*2; /* [3] */
+
+  @if ($inuit-use-markup-fix == false) {
+    font-size: 0;
+  }
+
+  // @media (max-width:#{$breakpoint-lg - 1}px){
+  //   padding: 0 $spacing-unit; 
+  // }
+}
+
+
+  /**
+   * 1. Required in order to combine fluid widths with fixed gutters.
+   * 2. Allows us to manipulate grids vertically, with text-level properties,
+   *    etc.
+   * 3. Default item alignment is with the tops of each other, like most
+   *    traditional grid/layout systems.
+   * 4. By default, all layout items are full-width (mobile first).
+   * 5. Gutters provided by left padding:
+   *    http://csswizardry.com/2011/08/building-better-grid-systems/
+   * 6. Fallback for old IEs not supporting `rem` values.
+   */
+
+  .o-layout__item {
+    box-sizing: border-box; /* [1] */
+    display: inline-block; /* [2] */
+    vertical-align: top; /* [3] */
+    width: 100%; /* [4] */
+    padding-left: $spacing-unit*2; /* [5] */
+
+    @if ($inuit-use-markup-fix == false) {
+      font-size: $inuit-global-font-size; /* [6] */
+      font-size: 1rem;
+    }
+
+  }
+
+/**
+ * Stretch all grid items of each row to have an equal-height.
+ * Please be aware that this modifier class doesn't take any effect in IE9 and
+ * below and other older browsers due to the lack of `display: flex` support.
+ */
+
+.o-layout--stretch {
+  display: flex;
+  flex-wrap: wrap;
+
+  > .o-layout__item {
+    display: flex;
+  }
+
+}
+
+.o-layout--clearfix {
+  @include clearfix();
+}
+
+
+//o-layout not followed by layout item

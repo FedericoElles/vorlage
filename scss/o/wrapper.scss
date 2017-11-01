@@ -1,11 +1,31 @@
 @import "clearfix";
 
 
-
-
+//Basic Wrapper
 .o-wrapper {
     @include clearfix();
-    max-width: $breakpoint-lg;
+    max-width: #{$max-width}px;
     margin-right: auto;
     margin-left:  auto;
+    background-color: $color-bg;
+    @media (min-width:#{$breakpoint}px){
+      padding: $spacing-unit $spacing-unit 0 $spacing-unit; 
+    }
+}
+
+.o-wrapper-inline {
+  //@include clearfix(); //does not work together with advertisments :(
+  max-width: #{$max-width-inline}px;
+  margin-right: auto;
+  margin-left:  auto;
+  //overflow:hidden; // does not work, due to highlighting of headlines
+  
+  @media (max-width:#{$breakpoint}px - 1px){
+    padding: 0px $spacing-unit;
+  }
+}
+
+.o-wrapper-inline--l {
+  @include clearfix();
+  max-width: #{$max-width-inline-l}px;
 }

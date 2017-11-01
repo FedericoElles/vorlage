@@ -1,0 +1,33 @@
+/*
+  Custom Object to make a small element float to the left of a text
+
+   ======
+  ### ===
+  ### ===
+   ======
+
+*/
+
+.o-aside {  
+  @media (min-width:#{$breakpoint}px){
+    height:0px;
+  }
+}
+
+
+.o-aside__item {
+  margin: $spacing-unit*5 0;
+  
+  @media (min-width:#{$breakpoint}px){
+    float:left;
+    max-width: 312px;
+    margin: $spacing-unit*5 $spacing-unit*2.5 $spacing-unit*5 0;
+  }
+  
+}
+
+.o-aside__item--left {
+  @media (min-width:#{$breakpoint}px){
+    float:left;
+  }
+}

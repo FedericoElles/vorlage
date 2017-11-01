@@ -1,5 +1,20 @@
-$breakpoint-lg: 940px;
+$breakpoint: 769; /* desktop view */
 
+$max-width: 1000; /* page wrapper */
+$max-width-inline: 650; /* max inline text */
+$max-width-inline-l: 820; /* max inline element*/
+
+
+$color-white: #fff;
+$color-white-hover: rgba(255,255,255, 0.7);
+$color-black: #000;
+$color-text: $color-black;
+$color-text-inverted: $color-white;
+$color-bg: $color-white;
+$color-grey: #9B9B9B;
+
+
+$inuit-use-markup-fix: false;
 $inuit-global-font-size:    16px;
 $font-modificator: 2px;
 $inuit-global-line-height:  24px;
@@ -14,9 +29,12 @@ $base-spacing-unit: $spacing-unit;
 @import "o/wrapper";
 @import "o/ratio";
 @import "o/media";
+@import "o/aside";
+@import "o/layout";
 
 @import "c/header";
-@inport "c/footer";
+@import "c/footer";
 
 @import "u/text";
 @import "u/space";
+@import "u/grid";
