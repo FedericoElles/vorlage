@@ -3,11 +3,36 @@ var Q = require('q');
 var marked = require('marked');
 var apimock = {};
 
+
+if (!process.env.space){
+  throw 'Please define space variable from Contentful in ENVIRONMENT';
+}
+
+if (!process.env.accessToken){
+  throw 'Please define accessToken variable from Contentful in ENVIRONMENT';
+}
+
+if (!process.env.accessTokenPreview){
+  throw 'Please define accessTokenPreview variable from Contentful in ENVIRONMENT';
+}
+
 var contentful = require('contentful')
-var client = contentful.createClient({
-  space: 'jj1cixz0dqds',
-  accessToken: '21a0c6f21b4530429f5b8f5594a5cc1cc34b71ec11a1908344ca01ee16b1c9b8'
+var clientLive= contentful.createClient({
+  space: process.env.space,
+  accessToken: process.env.accessToken
 })
+
+var clientPreview = contentful.createClient({
+  space: process.env.space,
+  accessToken: process.env.accessTokenPreview
+})
+
+
+function getClient(config){
+  return config.live ? clientLive : clientPreview;
+}
+
+
 
 apimock.example = function(){
   var deferred = Q.defer();
@@ -36,40 +61,12 @@ var deferred = Q.defer();
 
 
 
-apimock.posts = function(){
+
+
+apimock.articles = function(config){
   var deferred = Q.defer();
   
-  client.getEntries({
-    'content_type': '2wKn6yEnZewu2SCCkus4as'
-  })
-  .then(function (entries) {
-      //console.log(JSON.stringify(entries))
-      var data = [];
-      entries.items.forEach(function (entry) {
-        console.log(entry.fields.body)
-        data.push({
-          title: entry.fields.title,
-          body: entry.fields.body,
-          html: marked(entry.fields.body)
-        });
-      });
-      deferred.resolve(data);
-  })
-  .catch(function(err){
-    console.log(err);
-    deferred.reject(new Error(err));
-    
-  })
- 
-  return deferred.promise;  
-}
-
-
-
-apimock.articles = function(){
-  var deferred = Q.defer();
-  
-  client.getEntries({
+  getClient(config).getEntries({
     'content_type': 'article'
   })
   .then(function (entries) {
@@ -132,10 +129,10 @@ function elementify(items){
   
 }
 
-apimock.index = function(id){
+apimock.index = function(config, id){
   var deferred = Q.defer();
   
-  client.getEntries({
+  getClient(config).getEntries({
     'content_type': 'website',
     'sys.id': id,
     'include': 3
@@ -185,10 +182,10 @@ apimock.index = function(id){
 }
 
 
-apimock.article = function(slug){
+apimock.article = function(config, slug){
   var deferred = Q.defer();
   
-  client.getEntries({
+  getClient(config).getEntries({
     'content_type': 'article',
     'fields.slug': slug,
     'include': 3

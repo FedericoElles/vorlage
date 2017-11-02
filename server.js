@@ -18,7 +18,19 @@ var apimock = require('./apimock');
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
-var WEBSITEID = '50wzmVBMe4o0yaQC8aiUW2';
+if (!process.env.websiteId){
+  throw 'Please define websiteId variable from Contentful in ENVIRONMENT';
+}
+
+var WEBSITEID = process.env.websiteId;
+
+app.use(function(req, res, next){
+  req.apimock = {
+    live: (typeof req.query.preview === 'undefined')
+  };
+  console.log(req.apimock)
+  next();
+});
 
 
 /**
@@ -74,7 +86,7 @@ app.get('/style.css', (req, res) => {
  * Basic route
  */
 app.get("/", function (req, res) {
-   apimock.index(WEBSITEID).then(function(data){     
+   apimock.index(req.apimock, WEBSITEID).then(function(data){     
      res.render('home', getContext(req, data, data));  
      
    }).catch(function(err){catchError(res, err);});
@@ -92,22 +104,13 @@ app.get("/about", function (req, res) {
    }).catch(function(err){catchError(res, err);});
 });
 
-/**
- * Just another route
- */
-app.get("/posts", function (req, res) {
-   apimock.posts().then(function(data){     
-     
-     res.render('posts', getContext(req, data));
-     
-   }).catch(function(err){catchError(res, err);});
-});
+
 
 /**
  * Just another route
  */
 app.get("/articles", function (req, res) {
-   apimock.articles().then(function(data){     
+   apimock.articles(req.apimock).then(function(data){     
      
      res.render('articles', getContext(req, data));
      
@@ -120,9 +123,9 @@ app.get("/articles", function (req, res) {
  */
 app.get("/article/:id", function (req, res) {
    var index;
-   apimock.index(WEBSITEID).then(function(data){ 
+   apimock.index(req.apimock, WEBSITEID).then(function(data){ 
      index = data;
-     return apimock.article(req.params.id);
+     return apimock.article(req.apimock, req.params.id);
    }).then(function(data){     
      res.render('article', getContext(req, data, index));
      

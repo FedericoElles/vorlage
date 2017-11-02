@@ -1,27 +1,16 @@
-Welcome to the Glitch BETA
+VORLAGE
 =========================
 
-Click `Show` in the header to see your app live. Updates to your code will instantly deploy and update live.
-
-Glitch is a developer playground that lets you code a real web-app without the slow setup and deployment steps.
-
-[About Glitch](https://glitch.com/about)
+Basic project for the Contentful CMS
 
 
 Your Project
 ------------
 
-On the back-end,
-- your app starts at `server.js`
-- add frameworks and packages in `package.json`
-- safely store app secrets in `.env`
 
-On the front-end,
-- edit `public/client.js`, `public/style.css` and `views/index.html`
-- drag in `assets`, like images or music, to add them to your project
+Setup the environment file
 
-
-Made by Fog Creek
------------------
-
-\ ゜o゜)ノ
+space= UNIQUE ID OF YOUR SPACE
+accessToken=ACCESS TOKEN FOR PUBLISHED WEBSITE
+accessTokenPreview=ACCESS TOKEN FOR PREVIEW WEBSITE
+websiteId=UNQUE ID OF THE website Element in your space
