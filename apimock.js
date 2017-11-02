@@ -20,18 +20,20 @@ var contentful = require('contentful')
 var clientLive= contentful.createClient({
   space: process.env.space,
   accessToken: process.env.accessToken
-})
+});
+
+console.log('accessTokenPreview', process.env.accessTokenPreview);
 
 var clientPreview = contentful.createClient({
   space: process.env.space,
-  accessToken: process.env.accessTokenPreview
-})
+  accessToken: process.env.accessTokenPreview,
+  host: 'preview.contentful.com'
+});
 
 
 function getClient(config){
   return config.live ? clientLive : clientPreview;
 }
-
 
 
 apimock.example = function(){
