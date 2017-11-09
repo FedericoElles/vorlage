@@ -145,22 +145,26 @@ apimock.index = function(config, id){
       data.title = stage.fields.title;
     
       data.configs = {};
-      stage.fields.configs.forEach(function(config){
-        data.configs[config.fields.key] = config.fields.value || '';
-      });
+      if (stage.fields.configs){ 
+        stage.fields.configs.forEach(function(config){
+          data.configs[config.fields.key] = config.fields.value || '';
+        });
+      }
     
       data.menu = [];
-      stage.fields.menu.forEach(function(item){
-        var stage = {};
-        var type = item.sys.contentType.sys.id;
-        if (type === 'article'){
-          stage.type = 'link';
-        }
-        //TODO: type === container
-        stage.title = item.fields.title;
-        stage.slug = item.fields.slug
-        data.menu.push(stage);
-      });
+      if (stage.fields.menu) {
+        stage.fields.menu.forEach(function(item){
+          var stage = {};
+          var type = item.sys.contentType.sys.id;
+          if (type === 'article'){
+            stage.type = 'link';
+          }
+          //TODO: type === container
+          stage.title = item.fields.title;
+          stage.slug = item.fields.slug
+          data.menu.push(stage);
+        });
+      }
     
       data.elements = [];
     
