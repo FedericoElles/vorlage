@@ -133,6 +133,21 @@ app.get("/article/:id", function (req, res) {
 });
 
 
+/**
+ * Display article with webseite info
+ */
+app.get("/:id", function (req, res) {
+   var index;
+   apimock.index(req.apimock, WEBSITEID).then(function(data){ 
+     index = data;
+     return apimock.slug(req.apimock, req.params.id);
+   }).then(function(data){     
+     res.render('article', getContext(req, data, index));
+     
+   }).catch(function(err){catchError(res, err);});
+});
+
+
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);

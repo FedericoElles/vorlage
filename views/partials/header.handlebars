@@ -16,7 +16,12 @@
 
 <div class="u-show@desk"> 
     {{#each index.menu}}
-      <a href="/article/{{slug}}">{{title}}</a>      
+      {{#if isArticle}}
+        <a href="/article/{{slug}}">{{title}}</a>      
+      {{/if}}
+      {{#if isPage}}
+        <a href="/{{slug}}">{{title}}</a>      
+      {{/if}}
     {{/each}}
 </div>
 

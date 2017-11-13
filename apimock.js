@@ -156,9 +156,8 @@ apimock.index = function(config, id){
         stage.fields.menu.forEach(function(item){
           var stage = {};
           var type = item.sys.contentType.sys.id;
-          if (type === 'article'){
-            stage.type = 'link';
-          }
+          stage.type = type;
+          stage['is' + type[0].toUpperCase() + type.substr(1)] = true;
           //TODO: type === container
           stage.title = item.fields.title;
           stage.slug = item.fields.slug
@@ -211,5 +210,61 @@ apimock.article = function(config, slug){
  
   return deferred.promise;  
 }
+
+apimock.slug = function(config, slug){
+  var deferred = Q.defer();
+  
+  getClient(config).getEntries({
+    'content_type': 'page',
+    'fields.slug': slug,
+    'include': 3
+  })
+  .then(function (entries) {
+      if (entries.items.length > 0){
+        var stage = entries.items.pop() 
+        var data = {};
+        var type = stage.sys.contentType.sys.id;
+        data.title = stage.fields.title;
+        data.slug = stage.fields.slug;
+        data.type = type;
+        if (stage.fields.elements){
+          data.elements = elementify(stage.fields.elements);
+        }
+        deferred.resolve(data);
+      } else {
+        getClient(config).getEntries({
+          'content_type': 'container',
+          'fields.slug': slug,
+          'include': 3
+        }).then(function (entries) {
+          if (entries.items.length > 0){
+            var stage = entries.items.pop() 
+            var data = {};
+            var type = stage.sys.contentType.sys.id;
+            data.title = stage.fields.title;
+            data.slug = stage.fields.slug;
+            data.type = type;
+            if (stage.fields.elements){
+              //data.elements = elementify(stage.fields.elements);
+            }
+            deferred.resolve(data);
+          } else {
+            deferred.reject(new Error('page not found'));
+          }
+        })
+        .catch(function(err){
+          console.log(err);
+          deferred.reject(new Error(err));
+        });
+      }
+  })
+  .catch(function(err){
+    console.log(err);
+    deferred.reject(new Error(err));
+  })
+ 
+  return deferred.promise;  
+}
+
 
 module.exports = apimock;
