@@ -16,6 +16,7 @@
 
 .o-aside--center {
   height: auto;
+  margin: $spacing-unit*2.5 0;
 }
 
 
@@ -24,7 +25,7 @@
   
   @media (min-width:#{$breakpoint}px){
     
-    margin: $spacing-unit*5 $spacing-unit*2.5 0 0;
+    //margin: $spacing-unit*5 $spacing-unit*2.5 0 0;
   }
   
 }
@@ -37,7 +38,7 @@
   @media (min-width:#{$breakpoint}px){
     float:left;
     max-width: 312px;
-    margin: $spacing-unit*5 $spacing-unit*2.5 $spacing-unit*5 0;
+    margin: $spacing-unit*5 $spacing-unit*2.5;
   }
 }
 
@@ -45,6 +46,6 @@
   @media (min-width:#{$breakpoint}px){
     float:right;
     max-width: 312px;
-    margin: $spacing-unit*5 $spacing-unit*2.5 0 $spacing-unit*5;
+    margin: $spacing-unit*5 $spacing-unit*2.5;
   }
 }

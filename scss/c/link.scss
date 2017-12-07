@@ -1,3 +1,25 @@
+@import "inuit-font-size";
+
 .c-link {
   text-decoration: underline;
 }
+
+
+.c-link--sidemenu{
+  text-decoration: none;
+  display:block;
+  padding: $spacing-unit;
+  @include inuit-font-size($inuit-global-font-size + $font-modificator * 2, $important: false);
+  
+}
+
+.c-link--header {
+  text-decoration: none;
+  padding: $spacing-unit;
+  @include inuit-font-size($inuit-global-font-size + $font-modificator * 2, $important: false);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+

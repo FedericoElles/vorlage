@@ -13,6 +13,7 @@ $color-text-inverted: $color-white;
 $color-bg: $color-white;
 $color-grey: #9B9B9B;
 
+$color-primary: red;
 
 $inuit-use-markup-fix: false;
 $inuit-global-font-size:    16px;
@@ -31,6 +32,7 @@ $base-spacing-unit: $spacing-unit;
 @import "o/media";
 @import "o/aside";
 @import "o/layout";
+@import "o/flag";
 
 @import "c/header";
 @import "c/footer";

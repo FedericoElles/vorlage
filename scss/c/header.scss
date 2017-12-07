@@ -1,0 +1,21 @@
+
+
+.c-header {
+  border-top: 3px solid $color-primary;
+  box-shadow: 0 4px 2px -2px rgba(0,0,0,0.1);
+  margin-bottom: $spacing-unit*2;
+}
+
+.c-header__title{
+  
+}
+
+.c-header__links{
+  margin: $spacing-unit*2 $spacing-unit*-1;
+}
+
+.c-header__hamburger{
+  float: left;
+  border: none;
+  background: transparent;
+}

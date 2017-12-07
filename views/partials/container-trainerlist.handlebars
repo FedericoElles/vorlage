@@ -1,24 +1,26 @@
 
-<div class="u-clearfix">
-    
-</div>
-<div class="u-clear ">
+
+<div class="u-clear u-space-vert-4">
 
 
-  <h2 class="u-h2">
+  <h2 class="u-h2 u-space-bottom-2">
     {{title}}
   </h2>
 
 
   {{#each elements}}
-    <div class="c-person">
-      <h3>{{name}}</h3>
-      <h4>
-        {{description}}
-      </h4>
+  
+    <div class="o-flag">
+      <div class="o-flag__img">
+        {{> amp-img image=image class="c-image--portrait"}}
 
-      {{> amp-img image=image class="c-image--portrait"}}
-
+      </div>
+      <div class="o-flag__body">
+        <h3 class="u-h3">{{name}}</h3>
+        <h4>
+          {{description}}
+        </h4>
+      </div>
     </div>
 
   {{/each}}
