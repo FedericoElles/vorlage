@@ -132,6 +132,11 @@ function elementify(items){
         if (element.fields.image){
           stageElement.image = element.fields.image.fields;
         }
+        if (element.fields.view){
+          stageElement.view = element.fields.view;
+          stageElement.hasView = true;
+          stageElement.partialName = stageElement.type + '-' + stageElement.view;
+        }
         break;
       case 'blockImage':
         stageElement.title = element.fields.title;
@@ -152,8 +157,8 @@ function elementify(items){
       case 'container':
         stageElement.title = element.fields.title;
         stageElement.slug = element.fields.slug;
-        stageElement.view = element.fields.view;
-        if (stageElement.view){
+        if (element.fields.view){
+          stageElement.view = element.fields.view;
           stageElement.hasView = true;
           stageElement.partialName = stageElement.type + '-' + stageElement.view;
         }

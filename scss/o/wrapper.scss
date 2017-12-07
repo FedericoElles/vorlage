@@ -8,9 +8,8 @@
     margin-right: auto;
     margin-left:  auto;
     background-color: $color-bg;
-    @media (min-width:#{$breakpoint}px){
-      padding: $spacing-unit $spacing-unit 0 $spacing-unit; 
-    }
+    padding: $spacing-unit $spacing-unit 0 $spacing-unit; 
+  
 }
 
 .o-wrapper-inline {

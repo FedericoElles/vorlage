@@ -1,6 +1,9 @@
-<div class="c-image">
+<aside class="o-aside o-aside--{{view}}">
+  <div class="o-aside__item o-aside__item--{{view}}">
 
-<amp-img src="{{image.file.url}}" alt="{{description}}" height="{{image.file.details.image.height}}" width="{{image.file.details.image.width}}"></amp-img>
-<p>{{title}}</p>
+    {{> amp-img}}
 
-</div>
+    <p>{{description}}</p>
+
+  </div>
+</aside>

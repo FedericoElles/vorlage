@@ -1,14 +1,26 @@
-<h2>
-  {{title}}
-</h2>
+
+<div class="u-clearfix">
+    
+</div>
+<div class="u-clear ">
 
 
-{{#each elements}}
-  <div class="c-person">
-    <h3>{{name}}</h3>
-    <h4>
-      {{description}}
-    </h4>
-  </div>
+  <h2 class="u-h2">
+    {{title}}
+  </h2>
 
-{{/each}}
+
+  {{#each elements}}
+    <div class="c-person">
+      <h3>{{name}}</h3>
+      <h4>
+        {{description}}
+      </h4>
+
+      {{> amp-img image=image class="c-image--portrait"}}
+
+    </div>
+
+  {{/each}}
+  
+</div>

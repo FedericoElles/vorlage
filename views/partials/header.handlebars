@@ -3,7 +3,7 @@
       <li><a href="/">Startseite</a></li>
     {{#each index.menu}}
       
-      <li><a href="/article/{{slug}}">{{title}}</a></li>      
+      <li><a href="/{{slug}}">{{title}}</a></li>      
     {{/each}}
     
     
@@ -11,20 +11,21 @@
   </ul>
 </amp-sidebar>
 
+  <div class="o-wrapper">
 
-<div class="u-h1"><a href="/">{{index.title}}</a></div>
+  <div class="u-h1"><a href="/">{{index.title}}</a></div>
 
-<div class="u-show@desk"> 
-    {{#each index.menu}}
-      {{#if isArticle}}
-        <a href="/article/{{slug}}">{{title}}</a>      
-      {{/if}}
-      {{#if isPage}}
-        <a href="/{{slug}}">{{title}}</a>      
-      {{/if}}
-    {{/each}}
+  <div class="u-show@desk"> 
+      {{#each index.menu}}
+        {{#if isArticle}}
+          <a href="/article/{{slug}}">{{title}}</a>      
+        {{/if}}
+        {{#if isPage}}
+          <a href="/{{slug}}">{{title}}</a>      
+        {{/if}}
+      {{/each}}
+  </div>
+
+
+  <button class="hamburger u-show@mob" on='tap:sidebar1.toggle'>Menü</button>
 </div>
-
-
-<button class="hamburger u-show@mob" on='tap:sidebar1.toggle'>Menü</button>
-<hr>
