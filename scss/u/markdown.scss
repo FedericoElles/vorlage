@@ -1,0 +1,28 @@
+.u-markdown{
+  p {
+    line-height: 1.5rem;
+    margin-bottom: $spacing-unit;
+  }
+  
+  a {
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+      color: $color-grey;
+    }
+  }
+  
+  h2 {
+    @include inuit-font-size($inuit-font-size-h2, $important: false);
+    margin-bottom: $spacing-unit*2;
+  }
+  h3 {
+    @include inuit-font-size($inuit-font-size-h3, $important: false);
+    margin-bottom: $spacing-unit*2;
+  }
+  h4 {
+    @include inuit-font-size($inuit-font-size-h4, $important: false);
+    margin-bottom: $spacing-unit*2;
+  }
+  
+}

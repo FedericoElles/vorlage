@@ -97,6 +97,19 @@ apimock.articles = function(config){
 }
 
 
+function getUrl(element, type){
+  var r = '';
+  if (type === 'page'){
+    if (element.fields.slug){
+      r = '/' + element.fields.slug;
+    }
+    if (element.fields.folder && element.fields.folder.fields && element.fields.folder.fields.slug){
+      r = '/' + element.fields.folder.fields.slug + r;
+    }
+  }
+  return r;
+}
+
 
 function elementify(items){
   
@@ -108,18 +121,57 @@ function elementify(items){
     };
 
     switch (stageElement.type){
+      //page elements
       case 'blockText':
         stageElement.textHTML = marked(element.fields.text);
         break;
+      case 'blockLink':
+        stageElement.title = element.fields.title;
+        stageElement.description = element.fields.description;
+        stageElement.url = element.fields.url;
+        if (element.fields.image){
+          stageElement.image = element.fields.image.fields;
+        }
+        break;
       case 'blockImage':
         stageElement.title = element.fields.title;
+        stageElement.view = element.fields.view;
         stageElement.description = element.fields.description;
         stageElement.image = element.fields.image.fields;
         break;
       case 'blockHtml':
         stageElement.html = element.fields.html;
         break;
+      //container elements
+      case 'page':
+        stageElement.title = element.fields.title;
+        stageElement.slug = element.fields.slug;
+        stageElement.url = getUrl(element, stageElement.type);
+        stageElement.folder = element.fields.folder;
+        break;
+      case 'container':
+        stageElement.title = element.fields.title;
+        stageElement.slug = element.fields.slug;
+        stageElement.view = element.fields.view;
+        if (stageElement.view){
+          stageElement.hasView = true;
+          stageElement.partialName = stageElement.type + '-' + stageElement.view;
+        }
+        stageElement.description = element.fields.description;
+        if (element.fields.image){
+          stageElement.image = element.fields.image.fields;
+        }
+        stageElement.elements = elementify(element.fields.elements);
+        break;
       default:
+        for (var x in element.fields){
+          stageElement[x] = element.fields[x];
+          if (x === 'image'){
+            stageElement.image = element.fields.image.fields;
+          }
+        }
+        
+        
         stageElement.error = 'Unknown Block';
     }
 
@@ -147,7 +199,10 @@ apimock.index = function(config, id){
       data.configs = {};
       if (stage.fields.configs){ 
         stage.fields.configs.forEach(function(config){
-          data.configs[config.fields.key] = config.fields.value || '';
+          data.configs[config.fields.key] = {
+            value: config.fields.value || '',
+            html: marked(config.fields.value) || ''
+          };
         });
       }
     
@@ -245,7 +300,7 @@ apimock.slug = function(config, slug){
             data.slug = stage.fields.slug;
             data.type = type;
             if (stage.fields.elements){
-              //data.elements = elementify(stage.fields.elements);
+              data.elements = elementify(stage.fields.elements);
             }
             deferred.resolve(data);
           } else {
