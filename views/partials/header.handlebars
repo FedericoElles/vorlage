@@ -3,7 +3,7 @@
       <li><a class="c-link c-link--sidemenu"  href="/">Startseite</a></li>
     {{#each index.menu}}
       
-      <li><a class="c-link c-link--sidemenu" href="/{{slug}}">{{title}}</a></li>      
+      <li><a class="c-link c-link--sidemenu" href="{{slug}}">{{title}}</a></li>      
     {{/each}}
     
     
@@ -26,12 +26,7 @@
 
     <div class="c-header__links u-show@desk"> 
         {{#each index.menu}}
-          {{#if isArticle}}
-            <a class="c-header_link" href="/article/{{slug}}">{{title}}</a>      
-          {{/if}}
-          {{#if isPage}}
-            <a class="c-header_link" href="/{{slug}}">{{title}}</a>      
-          {{/if}}
+          <a class="c-header_link" href="{{slug}}">{{title}}</a>      
         {{/each}}
     </div>
 

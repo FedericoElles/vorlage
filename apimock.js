@@ -101,7 +101,7 @@ function getUrl(element, type){
   var r = '';
   if (type === 'page'){
     if (element.fields.slug){
-      r = '/' + element.fields.slug;
+      r = '/' + element.fields.slug + '.html';
     }
     if (element.fields.folder && element.fields.folder.fields && element.fields.folder.fields.slug){
       r = '/' + element.fields.folder.fields.slug + r;
@@ -235,7 +235,7 @@ apimock.index = function(config, id){
           stage['is' + type[0].toUpperCase() + type.substr(1)] = true;
           //TODO: type === container
           stage.title = item.fields.title;
-          stage.slug = item.fields.slug
+          stage.slug =  getUrl(item, type);
           data.menu.push(stage);
         });
       }
