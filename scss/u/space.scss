@@ -61,3 +61,25 @@
 	padding: $spacing-unit*2;
 }
 
+
+
+.u-pad-vert-xs-vert {
+	padding: $spacing-unit*(3/8) 0;
+}			
+
+.u-pad-vert-s {
+	padding: $spacing-unit*(5/8) 0;
+}			
+
+
+.u-pad-vert, .u-pad-vert-m {
+	padding: $spacing-unit 0;
+}			
+
+.u-pad-vert-l {
+	padding: $spacing-unit*1.5 0;
+}		
+
+.u-pad-vert-xl {
+	padding: $spacing-unit*2 0;
+}

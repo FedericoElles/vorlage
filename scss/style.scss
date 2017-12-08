@@ -15,6 +15,7 @@ $color-grey: #9B9B9B;
 
 $color-primary: #4f96f6;
 $color-primary-light: #98c1fa;
+$color-primary-bg: lighten($color-primary, 35%);
 $color-secondary: #f2f263;
 
 $inuit-use-markup-fix: false;

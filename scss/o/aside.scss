@@ -19,7 +19,8 @@
   margin: $spacing-unit*2.5 $spacing-unit*-1;
 
   .o-aside__text--nofullwith{
-    padding: 0 $spacing-unit;
+    padding-right: $spacing-unit;
+    padding-left: $spacing-unit;
   }
 
 }
@@ -28,7 +29,7 @@
 .o-aside--right.o-aside--vert,
 .o-aside--left.o-aside--vert{
   @media (max-width:#{$breakpoint - 1}px){
-    max-width: 300px;
+    max-width: 220px;
     margin: $spacing-unit auto ;
   }
 }
