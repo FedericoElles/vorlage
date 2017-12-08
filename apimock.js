@@ -131,7 +131,7 @@ function getImage(element){
     var SRCSET = {"320": 320, "640": 640, "1000": 1000};
     var srcset = [];
     for (var set in SRCSET){
-      srcset.push(url + '?' + (r.Vert ? 'h' : 'w') + '=' + SRCSET[set] + ' ' + set + 'w');
+      srcset.push(url + '?' + (r.isVert ? 'h' : 'w') + '=' + SRCSET[set] + ' ' + set + 'w');
     }
     r.srcset = srcset.join(', ');
   }

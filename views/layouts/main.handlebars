@@ -8,18 +8,8 @@
    <script async src="https://cdn.ampproject.org/v0.js"></script>
    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
    
-   <title>{{data.title}} {{index.configs.suffix}}</title>
-   <script type="application/ld+json">
-      {
-        "@context": "http://schema.org",
-        "@type": "NewsArticle",
-        "headline": "{{data.title}}",
-        "datePublished": "2015-10-07T12:02:41Z",
-        "image": [
-          "logo.jpg"
-        ]
-      }
-   </script>
+   <title>{{data.title}} {{index.configs.suffix.value}}</title>
+   {{{jsonld}}}
    <style amp-custom>
      {{{style}}}
    </style>

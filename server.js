@@ -37,6 +37,28 @@ app.use(function(req, res, next){
 });
 
 
+
+
+
+/**
+ JSON-LD
+ In Work
+ */
+function getJsonLD(){
+  var r =  { 
+    "@context": "http://schema.org", 
+    "@type": "WebSite", 
+    "url": "", 
+    "name": "",
+    "description": "",
+    "publisher": ""
+  };
+  
+  return '<script type="application/ld+json">\n' + 
+    JSON.stringify(r, undefined, 2) + 
+    '\n</script>';
+}
+
 /**
  * CONTEXT
  */
@@ -45,7 +67,7 @@ function getContext(req, data, indexData){
     debug: !!req.query.debug, // Are we in debug mode? ?debug=true
     dev: !!req.query.dev,     //Are we in dev mode? ?dev=true
     data: data, //data is always the external payload
-      style: sass.renderSync({
+    style: sass.renderSync({
       file: './scss/style.scss',
       includePaths: ['./scss/mixins/'],
       outputStyle: 'compressed'
@@ -55,6 +77,9 @@ function getContext(req, data, indexData){
     delete indexData.stage;
     context.index = indexData;
   }
+  
+  context.jsonld = getJsonLD();
+  
   if (context.debug){ //shortcut to display context in template
     context.json = JSON.stringify(context, undefined, 4);
   }
