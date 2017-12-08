@@ -2,24 +2,17 @@
 
 .c-link {
   text-decoration: underline;
+  &:hover {
+    color: $color-primary;
+  }
 }
 
 
 .c-link--sidemenu{
   text-decoration: none;
   display:block;
-  padding: $spacing-unit;
-  @include inuit-font-size($inuit-global-font-size + $font-modificator * 2, $important: false);
-  
+  padding: $spacing-unit;  
 }
 
-.c-link--header {
-  text-decoration: none;
-  padding: $spacing-unit;
-  @include inuit-font-size($inuit-global-font-size + $font-modificator * 2, $important: false);
 
-  &:hover {
-    text-decoration: underline;
-  }
-}
 

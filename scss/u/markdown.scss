@@ -5,10 +5,10 @@
   }
   
   a {
-    text-decoration: underline;
+    color: $color-primary;
     &:hover {
-      text-decoration: none;
-      color: $color-grey;
+      text-decoration: underline;
+      color: $color-primary;
     }
   }
   
@@ -30,4 +30,17 @@
     margin-bottom: $spacing-unit*2;
   }
   
+}
+
+.u-markdown--inverted{
+  color: $color-white;
+  
+  a {
+    color: $color-white;
+    text-decoration: underline;
+    &:hover {
+      color: $color-white;
+      text-decoration: none;
+    }
+  }
 }

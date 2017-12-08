@@ -7,9 +7,16 @@
     max-width: #{$max-width}px;
     margin-right: auto;
     margin-left:  auto;
-    background-color: $color-bg;
     padding: $spacing-unit $spacing-unit 0 $spacing-unit; 
   
+}
+
+.o-wrapper--samepad {
+  padding: $spacing-unit;
+} 
+
+.o-wrapper--primary{
+  min-height:80vh;
 }
 
 .o-wrapper-inline {

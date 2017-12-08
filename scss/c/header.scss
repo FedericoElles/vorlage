@@ -1,4 +1,4 @@
-
+@import "inuit-font-size";
 
 .c-header {
   border-top: 3px solid $color-primary;
@@ -11,11 +11,26 @@
 }
 
 .c-header__links{
-  margin: $spacing-unit*2 $spacing-unit*-1;
+  margin: $spacing-unit*1 $spacing-unit*-1 0 $spacing-unit*-1;
+}
+
+.c-header_link {
+  text-decoration: none;
+  padding: $spacing-unit;
+
+  &:hover {
+    color: $color-primary;
+  }
 }
 
 .c-header__hamburger{
+  position: relative;
+  top: 2px;
   float: left;
   border: none;
   background: transparent;
+  
+  path {
+    fill: $color-primary;
+  }
 }
