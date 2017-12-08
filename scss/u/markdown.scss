@@ -12,6 +12,11 @@
     }
   }
   
+  h1 {
+    @include inuit-font-size($inuit-font-size-h1, $important: false);
+    margin-bottom: $spacing-unit*2;
+  }  
+  
   h2 {
     @include inuit-font-size($inuit-font-size-h2, $important: false);
     margin-bottom: $spacing-unit*2;

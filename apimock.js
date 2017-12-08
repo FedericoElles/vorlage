@@ -110,6 +110,25 @@ function getUrl(element, type){
   return r;
 }
 
+function getImage(element){
+  var r = false
+  if (element.fields.image){
+    r = element.fields.image.fields;
+  }
+  if (r && r.file.details.image.width > r.file.details.image.height){
+    r.isHorz = true;
+    r.ratio = 'horz';
+  } else {
+    r.isVert = true;
+    r.ratio = 'vert';
+  }
+  if (r && r.file.details.image.width > r.file.details.image.height){
+    r.isSquare = true;
+    r.ratio = 'square';
+  }
+  return r;
+}
+
 
 function elementify(items){
   
@@ -129,9 +148,7 @@ function elementify(items){
         stageElement.title = element.fields.title;
         stageElement.description = element.fields.description;
         stageElement.url = element.fields.url;
-        if (element.fields.image){
-          stageElement.image = element.fields.image.fields;
-        }
+        stageElement.image = getImage(element);
         if (element.fields.view){
           stageElement.view = element.fields.view;
           stageElement.hasView = true;
@@ -142,7 +159,7 @@ function elementify(items){
         stageElement.title = element.fields.title;
         stageElement.view = element.fields.view;
         stageElement.description = element.fields.description;
-        stageElement.image = element.fields.image.fields;
+        stageElement.image = getImage(element);
         break;
       case 'blockHtml':
         stageElement.html = element.fields.html;
@@ -163,16 +180,14 @@ function elementify(items){
           stageElement.partialName = stageElement.type + '-' + stageElement.view;
         }
         stageElement.description = element.fields.description;
-        if (element.fields.image){
-          stageElement.image = element.fields.image.fields;
-        }
+        stageElement.image = getImage(element);
         stageElement.elements = elementify(element.fields.elements);
         break;
       default:
         for (var x in element.fields){
           stageElement[x] = element.fields[x];
           if (x === 'image'){
-            stageElement.image = element.fields.image.fields;
+            stageElement.image = getImage(element);
           }
         }
         

@@ -1,11 +1,4 @@
-
-{{> title title=data.title }}
-
-
 {{#each data.elements}}
   <!-- Base Element {{title}} -->
   {{> (lookup . 'type')}}
 {{/each}}
-
-
-       
