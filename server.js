@@ -2,6 +2,8 @@
 // where your node app starts
 
 // init project
+var compression = require('compression')
+
 var express = require('express');
 var exphbs  = require('express-handlebars');
 var sass = require('node-sass'); 
@@ -17,6 +19,8 @@ var apimock = require('./apimock');
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
+app.use(compression());
+
 
 if (!process.env.websiteId){
   throw 'Please define websiteId variable from Contentful in ENVIRONMENT';
