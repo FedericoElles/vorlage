@@ -35,3 +35,42 @@
     fill: $color-primary;
   }
 }
+
+
+.c-header2__subnav {
+  display: inline-block;
+  float: right;
+  position: relative;
+  top: -28px;
+  height:0px;
+}
+
+.c-header2__links{
+  display: flex;
+  flex-direction: row;
+}
+
+.c-header2__group{
+  //flex-grow: 1;
+}
+
+.c-header2__group--next{
+  margin-left: $spacing-unit*2;
+}
+
+.c-header2__subtitle{
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 90%;
+  display: inline-block;
+}
+
+.c-header2__subtitletext{
+  border-bottom: 1px solid $color-primary;
+  //padding-right: $spacing-unit*2;
+}
+
+.c-header2_link{
+  display: inline-block;
+  padding: 3px  $spacing-unit $spacing-unit 16px;
+}
