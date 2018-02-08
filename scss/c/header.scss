@@ -37,7 +37,7 @@
 }
 
 
-.c-header2__subnav {
+.c-header__subnav {
   display: inline-block;
   float: right;
   position: relative;
@@ -54,7 +54,7 @@
   //flex-grow: 1;
 }
 
-.c-header2__group--next{
+.c-header2__group + .c-header2__group{
   margin-left: $spacing-unit*2;
 }
 

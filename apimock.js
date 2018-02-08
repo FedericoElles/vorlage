@@ -244,7 +244,8 @@ apimock.index = function(config, id){
           stage.type = type;
           stage['is' + type[0].toUpperCase() + type.substr(1)] = true;
           //TODO: type === container
-          stage.title = item.fields.title;
+          stage.title = item.fields.titleMenu || item.fields.title;
+          //stage.titleMenu = ;
           stage.slug =  getUrl(item, type);
           if (stage.isContainer){
             stage.elements = menufy(item.fields.elements);

@@ -24,23 +24,42 @@
 
     <div class="c-header__title u-h1"><a href="/">{{index.title}}</a></div>
 
-    <div class="c-header2__subnav">
-        {{#each index.menu}}
-            {{#if @first}} 
-              {{#each elements}}
+    <div class="u-show@desk">
+      
+      <div class="c-header__subnav">
+          {{#each index.menu}}
+              {{#if @first}} 
+                {{#each elements}}
+                  <a class="c-header_link" href="{{slug}}">{{title}}</a>
+                {{/each}}
+              {{/if}}
+          {{/each}}
+      </div>
+
+
+      <div class="c-header2__links u-space-top-1"> 
+          {{#each index.menu}}
+            {{#unless @first}} 
+              {{#if isPage}}
                 <a class="c-header_link" href="{{slug}}">{{title}}</a>
-              {{/each}}
-            {{/if}}
-        {{/each}}
+              {{/if}}
+              {{#if isContainer}}
+              <div class="c-header2__group">
+                <div class="c-header2__subtitle">
+                  <span class="c-header2__subtitletext">{{title}}:</span>
+                </div>
+
+                {{#each elements}}
+                  <a class="c-header2_link" href="{{slug}}">{{title}}</a>      
+                {{/each}}
+
+
+              </div>
+              {{/if}}
+            {{/unless}}
+          {{/each}}
+      </div>
     </div>
-    
-    
-    <div class="c-header__links u-show@desk"> 
-        {{#each index.menu}}
-          <a class="c-header_link" href="{{slug}}">{{title}}</a>      
-        {{/each}}
-    </div>
-    
     
     <div class="u-show@desk">
       <div style="border-bottom: 1px solid white;" class="u-space-vert-2 u-text-s">
