@@ -235,9 +235,10 @@ apimock.index = function(config, id){
         });
       }
     
-      data.menu = [];
-      if (stage.fields.menu) {
-        stage.fields.menu.forEach(function(item){
+    
+      function menufy(menu){
+        var r = []
+        menu.forEach(function(item){
           var stage = {};
           var type = item.sys.contentType.sys.id;
           stage.type = type;
@@ -245,8 +246,27 @@ apimock.index = function(config, id){
           //TODO: type === container
           stage.title = item.fields.title;
           stage.slug =  getUrl(item, type);
-          data.menu.push(stage);
+          if (stage.isContainer){
+            stage.elements = menufy(item.fields.elements);
+          }
+          r.push(stage);
         });
+        return r;
+      }
+    
+      data.menu = [];
+      if (stage.fields.menu) {
+        data.menu = menufy(stage.fields.menu);
+        // stage.fields.menu.forEach(function(item){
+        //   var stage = {};
+        //   var type = item.sys.contentType.sys.id;
+        //   stage.type = type;
+        //   stage['is' + type[0].toUpperCase() + type.substr(1)] = true;
+        //   //TODO: type === container
+        //   stage.title = item.fields.title;
+        //   stage.slug =  getUrl(item, type);
+        //   data.menu.push(stage);
+        // });
       }
     
       data.elements = [];
