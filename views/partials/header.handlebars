@@ -1,11 +1,21 @@
 <amp-sidebar id="sidebar1" layout="nodisplay" side="left">
   <ul>
       <li><a class="c-link c-link--sidemenu"  href="/">Startseite</a></li>
-    {{#each index.menu}}
-      
-      <li><a class="c-link c-link--sidemenu" href="{{slug}}">{{title}}</a></li>      
-    {{/each}}
     
+    {{#each index.menu}}
+        {{#if isPage}}
+          <li><a class="c-link c-link--sidemenu" href="{{slug}}">{{title}}</a></li>
+        {{/if}}
+        {{#if isContainer}}
+            <li><div class="c-header2__subtitletext u-space-1 u-space-top-2">{{title}}:</div></li>
+        
+          {{#each elements}}
+            <li><a class="c-link c-link--sidemenu" href="{{slug}}">{{title}}</a></li>
+          {{/each}}
+
+
+        {{/if}}
+    {{/each}}
     
     
   </ul>
@@ -59,47 +69,6 @@
             {{/unless}}
           {{/each}}
       </div>
-    </div>
-    
-    <div class="u-show@desk">
-      <div style="border-bottom: 1px solid white;" class="u-space-vert-2 u-text-s">
-        Alternativer Header:
-      </div>
-
-      <div class="c-header__title u-h1">
-        <a href="/">{{index.title}}</a>
-      </div>
-      <div class="c-header2__subnav">
-        <a class="c-header_link" href="/verein.html">Verein</a>    
-        <a class="c-header_link" href="/sportabzeichen.html">Sportabzeichen</a>  
-        <a class="c-header_link" href="/aktuelles.html">Aktuelles</a>
-      </div>
-    
-      
-      <div class="c-header2__links u-space-top-1 u-stretch"> 
-        <div class="c-header2__group">
-          <div class="c-header2__subtitle">
-            <span class="c-header2__subtitletext">Sportarten:</span>
-          </div>
-
-          <a class="c-header2_link" href="/schwimmen.html">Schwimmen</a>      
-          <a class="c-header2_link" href="/bogensport.html">Bogensport</a> 
-          <a class="c-header2_link" href="/bosseln.html">Bosseln</a> 
-
-
-
-        </div>
-        <div class="c-header2__group c-header2__group--next">
-          <div class="c-header2__subtitle">
-            <span class="c-header2__subtitletext">Rehabilitationssport: </span>
-          </div>
-          <a class="c-header2_link" href="/beispielsport.html">Wassergymnastik</a>      
-          <a class="c-header2_link" href="/rehabilitationssport-hallengymnastik.html">Hallengymnastik</a>      
-
-        </div>
-
-      </div>
-      
     </div>
 
 
