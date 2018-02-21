@@ -173,7 +173,23 @@ function elementify(items){
       case 'blockHtml':
         stageElement.html = element.fields.html;
         break;
-      //container elements
+      case 'blockMap':
+        //stageElement.fields = element.fields;
+        stageElement.title = element.fields.title;
+        if (element.fields.view){
+          stageElement.view = element.fields.view;
+          stageElement.hasView = true;
+          stageElement.partialName = stageElement.type + '-' + stageElement.view;
+        }
+        stageElement.descriptionHTML = marked(element.fields.description);
+        stageElement.location = element.fields.location;
+        stageElement.googleMapsImageLink = 'https://maps.googleapis.com/maps/api/staticmap?center='+element.fields.location.lat+','+element.fields.location.lon+'&zoom=15&size=640x640&maptype=roadmap' +
+         '&markers=color:blue%7Clabel:S%7C'+element.fields.location.lat+','+element.fields.location.lon;
+        stageElement.googleMapsLink = 'https://www.google.com/maps?q='+element.fields.location.lat+','+element.fields.location.lon;
+        
+        break;
+      
+        //container elements
       case 'page':
         stageElement.title = element.fields.title;
         stageElement.slug = element.fields.slug;
